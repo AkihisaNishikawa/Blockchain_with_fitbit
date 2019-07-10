@@ -1,4 +1,4 @@
-package practice;
+package sample;
 
 
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import com.google.gson.GsonBuilder;
 public class Noobchain {
 	
 	public static ArrayList<Block> blockchain = new ArrayList<Block>();
-	public static int difficulty = 6;
+	public static int difficulty = 3;
 
 	public static void main(String[] args) {	
 		//add our blocks to the blockchain ArrayList:
