@@ -3,17 +3,18 @@ package blockchain_main;
 import java.util.Date;
 
 public class BlockHeader {
+	// To do: change variable sizes 
 	private String version; // version to track protocol/software upgrade
 	private long timestamp;
 	public String merkleroot;// not necessary (depends on data)
 	public String previoushash;
 	private int difficultytarget;
-	public int nonce = 0;
+	public int nonce;
 
 	public BlockHeader(String version, int difficultytarget, String previoushash) {
 		this.version = version;
 		this.previoushash = previoushash;
-
+		this.difficultytarget=difficultytarget;
 		this.timestamp = new Date().getTime();
 	}
 
@@ -32,7 +33,15 @@ public class BlockHeader {
 //	public String getMekelRoot() {
 //		return merkleroot;
 //	}
+	
+	public void setPreviousHash(String previoushash) {
+		this.previoushash = previoushash;
+	}
 
+	public String getPreviousHash() {
+		return previoushash;
+	}
+	
 	public int getDifficulty() {
 		return difficultytarget;
 	}

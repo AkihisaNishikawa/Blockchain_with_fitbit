@@ -23,7 +23,7 @@ public class Fitbit_data {
 	public Fitbit_data() {
 
 	}
-	
+
 	public Fitbit_data(String row) {
 		String[] values = row.split(",");
 		this.Date = values[0];
@@ -36,6 +36,25 @@ public class Fitbit_data {
 		this.Minutes_of_moderate_activity = values[7];
 		this.Minutes_of_intense_activity = values[8];
 		this.Calories_Activity = values[9];
+	}
+
+	/**
+	 * @return List of Fitbit Instances(data per day)
+	 * @throws FileNotFoundException Data has to be comma separated 10 Strings
+	 *                               Reference to
+	 *                               One_Year_of_FitbitChargeHR_Data.csv
+	 */
+	public static List<Fitbit_data> getInstancesAsList() throws FileNotFoundException {
+		List<Fitbit_data> instances = new ArrayList<Fitbit_data>();
+
+		File file = new File(path);
+		file.exists();
+		Scanner inputStream = new Scanner(file);
+		while (inputStream.hasNext()) {
+			String data = inputStream.next();
+			instances.add(new Fitbit_data(data));
+		}
+		return instances;
 	}
 
 	public void setDate(String date) {
@@ -118,26 +137,6 @@ public class Fitbit_data {
 		return Calories_Activity;
 	}
 
-
-	
-	/**
-	 * @return List of Fitbit Instances(data per day)
-	 * @throws FileNotFoundException
-	 * Data has to be comma separated 10 Strings Reference to One_Year_of_FitbitChargeHR_Data.csv
-	 */
-	public List<Fitbit_data> getInstancesAsList() throws FileNotFoundException {
-		List<Fitbit_data> instances = new ArrayList<Fitbit_data>();
-
-		File file = new File(path);
-		file.exists();
-		Scanner inputStream = new Scanner(file);
-		while (inputStream.hasNext()) {
-			String data = inputStream.next();
-			instances.add(new Fitbit_data(data));
-		}
-		return instances;
-	}
-	
 	/**
 	 * @return Spark sql Dataset
 	 * @throws FileNotFoundException this method can be used when handling dataset

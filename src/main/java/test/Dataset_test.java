@@ -6,11 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.commons.collections.bag.HashBag;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 import org.junit.Test;
 
+import com.google.gson.Gson;
+
+import blockchain_main.BlockHeader;
 import blockchain_main.Fitbit_data;
 
 public class Dataset_test {
@@ -37,6 +41,7 @@ public class Dataset_test {
 		}
 
 	}
+
 	@Test
 	public void testFitbitData() {
 		Fitbit_data sample = new Fitbit_data();
@@ -47,5 +52,4 @@ public class Dataset_test {
 			e.printStackTrace();
 		}
 	}
-
 }
