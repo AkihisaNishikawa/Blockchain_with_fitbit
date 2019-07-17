@@ -34,7 +34,7 @@ public class Block {
 	}
 
 	public static Block createGenesisBlock() {
-		BlockHeader header = new BlockHeader("1", 3, "0");// previous hash does not exist
+		BlockHeader header = new BlockHeader("1", 5, "0");// previous hash does not exist
 		header.timestamp = 1563121578155L;
 		genesisBlock = new Block(header);
 		return genesisBlock;
@@ -53,6 +53,10 @@ public class Block {
 
 	public void setHash(String hash) {
 		this.hash = hash;
+	}
+
+	public String getHash() {
+		return hash;
 	}
 
 	public String getPreviousHash() {

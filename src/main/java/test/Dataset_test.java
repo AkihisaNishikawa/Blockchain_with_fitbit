@@ -37,7 +37,7 @@ public class Dataset_test {
 		while (inputStream.hasNext()) {
 			String data = inputStream.next();
 			String[] values = data.split(",");
-			System.out.println(values[0]);
+			System.out.println(data);
 		}
 
 	}
@@ -45,9 +45,12 @@ public class Dataset_test {
 	@Test
 	public void testFitbitData() {
 		Fitbit_data sample = new Fitbit_data();
+		Gson parser = new Gson();
 		try {
 			List<Fitbit_data> s = sample.getInstancesAsList();
-			System.out.println(s.get(1).getDate());
+			for (Fitbit_data data : s) {
+				System.out.println(parser.toJson(data));
+			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
