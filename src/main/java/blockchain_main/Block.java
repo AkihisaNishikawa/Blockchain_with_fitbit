@@ -1,10 +1,11 @@
 package blockchain_main;
 
-import java.lang.instrument.Instrumentation;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import additional_functions.SHA256;;
 
 /**
@@ -15,8 +16,8 @@ public class Block {
 	private List<Fitbit_data> data;// this can be changed to any preferred data
 	public String hash;
 	public BlockHeader blockheader;
-	public long blocksize;
 	public int instanceCounter;
+	public static Block genesisBlock;
 
 	public Block(BlockHeader blockheader) {
 		this.data = new ArrayList<Fitbit_data>();
@@ -33,13 +34,14 @@ public class Block {
 	}
 
 	public static Block createGenesisBlock() {
-		BlockHeader header = new BlockHeader("1", 4, "0");// previous hash does not exist
-		Block genesisBlock = new Block(header);
+		BlockHeader header = new BlockHeader("1", 3, "0");// previous hash does not exist
+		header.timestamp = 1563121578155L;
+		genesisBlock = new Block(header);
 		return genesisBlock;
 	}
 
 	public String computeHash() {
-		Gson format = new Gson();
+		Gson format = new GsonBuilder().create();
 		String dataInJson = format.toJson(data);
 		String headerInJson = format.toJson(blockheader);
 		String ts = String.valueOf(instanceCounter);
@@ -47,10 +49,6 @@ public class Block {
 		String hash = SHA256.generateHash(headerInJson + data.size() + ts + dataInJson);
 		System.out.println("Hash of this block is:" + hash);
 		return hash;
-	}
-
-	public void setBlocksize(long blocksize) {
-		this.blocksize = blocksize;
 	}
 
 	public void setHash(String hash) {
