@@ -44,11 +44,12 @@ public class Fitbit_data {
 	 *                               Reference to
 	 *                               One_Year_of_FitbitChargeHR_Data.csv
 	 */
-	public static List<Fitbit_data> getInstancesAsList() throws FileNotFoundException {
-		List<Fitbit_data> instances = new ArrayList<Fitbit_data>();
+	public static ArrayList<Fitbit_data> getInstancesAsList() throws FileNotFoundException {
+		ArrayList<Fitbit_data> instances = new ArrayList<Fitbit_data>();
 
 		File file = new File(path);
 		file.exists();
+		@SuppressWarnings("resource")
 		Scanner inputStream = new Scanner(file);
 		while (inputStream.hasNext()) {
 			String data = inputStream.next();
@@ -56,6 +57,7 @@ public class Fitbit_data {
 		}
 		return instances;
 	}
+	
 
 	public void setDate(String date) {
 		this.Date = date;

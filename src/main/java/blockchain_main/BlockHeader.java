@@ -4,7 +4,7 @@ public class BlockHeader {
 	// To do: change variable sizes
 	private String version; // version to track protocol/software upgrade
 	public long timestamp;
-	public String merkleroot;// not necessary (depends on data)
+	public String merkelroot;// not necessary
 	public String previoushash;
 	private int difficultytarget;
 	public int nonce;
@@ -16,6 +16,14 @@ public class BlockHeader {
 		this.timestamp = System.currentTimeMillis();
 	}
 
+	public void setMekelRoot(String merkelTree) {
+		this.merkelroot = merkelTree;
+	}
+
+	public String getMekelRoot() {
+		return merkelroot;
+	}
+
 	public String getVersion() {
 		return version;
 	}
@@ -23,14 +31,6 @@ public class BlockHeader {
 	public long getTimeStamp() {
 		return timestamp;
 	}
-
-//	public void setMekelRoot(int difficulty) {
-//		
-//	}
-//	
-//	public String getMekelRoot() {
-//		return merkleroot;
-//	}
 
 	public void setPreviousHash(String previoushash) {
 		this.previoushash = previoushash;

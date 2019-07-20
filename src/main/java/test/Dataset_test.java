@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import com.google.gson.Gson;
 
+import additional_functions.SHA256;
 import blockchain_main.BlockHeader;
 import blockchain_main.Fitbit_data;
 
@@ -44,15 +45,28 @@ public class Dataset_test {
 
 	@Test
 	public void testFitbitData() {
-		Fitbit_data sample = new Fitbit_data();
 		Gson parser = new Gson();
 		try {
-			List<Fitbit_data> s = sample.getInstancesAsList();
+			List<Fitbit_data> s = Fitbit_data.getInstancesAsList();
 			for (Fitbit_data data : s) {
 				System.out.println(parser.toJson(data));
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	public void testFitbitDataHash() throws FileNotFoundException {
+		List<Fitbit_data> data = Fitbit_data.getInstancesAsList();
+		Gson parser = new Gson();
+		String hash;
+				
+		for(Fitbit_data f :data) {
+			System.out.println(parser.toJson(f));
+			hash = SHA256.generateHash(parser.toJson(f));
+			System.out.println(hash);
+		}
+		
 	}
 }

@@ -1,7 +1,9 @@
 package additional_functions;
 
 import java.lang.instrument.Instrumentation;
-
+/*
+ * It is not used in this project
+ */
 public class ObjectSizeCalculator {
 	private static Instrumentation instrumentation;
 

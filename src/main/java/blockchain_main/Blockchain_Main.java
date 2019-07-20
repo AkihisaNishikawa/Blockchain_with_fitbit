@@ -2,7 +2,9 @@ package blockchain_main;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -10,9 +12,11 @@ import com.google.gson.GsonBuilder;
 import additional_functions.SHA256;
 
 public class Blockchain_Main {
+	public String hash;
 
-	private static List<Block> blockchain = new ArrayList<Block>();
-	private static List<Fitbit_data> fitbit;
+	private static Map<String, Block> blockchain = new HashMap<String, Block>();// This string is Hash of the Block
+	private static ArrayList<Fitbit_data> fitbit;
+	private static final int difficulty = 4;
 
 	public static void main(String[] args) {
 		Block genesisBlock = Block.createGenesisBlock();
@@ -21,19 +25,16 @@ public class Blockchain_Main {
 		// make sure hash value is not changing with same input
 
 		System.out.println("Finding a key...");
-		
+
 		long starttime = System.currentTimeMillis();
 		final String ghash = proofOfWork(Block.genesisBlock);
 		long endtime = System.currentTimeMillis();
-		System.out.println("Time spent on mining in milli second: "+ (endtime - starttime));
-		
-		genesisBlock.setHash(ghash);
+		System.out.println("Time spent on mining in milli second: " + (endtime - starttime));
 
-		Gson parser = new GsonBuilder().setPrettyPrinting().create();
-		System.out.println(parser.toJson(genesisBlock));
-		
-		blockchain.add(genesisBlock);
-		
+		Gson parser = new GsonBuilder().setPrettyPrinting().create();		
+		blockchain.put(ghash,genesisBlock);
+		System.out.println(parser.toJson(blockchain));
+
 		try {
 			fitbit = Fitbit_data.getInstancesAsList();
 		} catch (FileNotFoundException e) {
@@ -42,18 +43,60 @@ public class Blockchain_Main {
 			System.exit(-1);
 		}
 		
+		List<Fitbit_data> fb1,fb2,fb3;
+		fb1 = fitbit.subList(1, 122);
+		fb2 = fitbit.subList(123, 245);
+		fb3 = fitbit.subList(246, 368);
 		
+
+		// First Block--------------------------------------------------------
 		System.out.println("Finding a key...");
 
-		BlockHeader bh1 = new BlockHeader("1", 4, genesisBlock.getHash());
-		Block block1 = new Block(fitbit, bh1);
+		BlockHeader bh1 = new BlockHeader("1", difficulty, genesisBlock.computeHash());
+		Block block1 = new Block(fb1, bh1);
+		bh1.setMekelRoot(block1.merkleTree());
 		
 		starttime = System.currentTimeMillis();
-		block1.setHash(proofOfWork(block1));
+		blockchain.put(proofOfWork(block1),block1);
 		endtime = System.currentTimeMillis();
-		System.out.println("Time spent on mining in milli second: "+  (endtime - starttime));
+		System.out.println("Time spent on mining in milli second: " + (endtime - starttime));
 
+		System.out.println(block1.computeHash());
 		System.out.println(parser.toJson(block1));
+
+		
+		// Second Block--------------------------------------------------------
+		System.out.println("Finding a key...");
+
+		BlockHeader bh2 = new BlockHeader("1", difficulty, block1.computeHash());
+		Block block2 = new Block(fb2, bh2);
+		bh2.setMekelRoot(block2.merkleTree());
+
+		
+		starttime = System.currentTimeMillis();
+		blockchain.put(proofOfWork(block2),block2);
+		endtime = System.currentTimeMillis();
+		System.out.println("Time spent on mining in milli second: " + (endtime - starttime));
+
+		System.out.println(block2.computeHash());
+		System.out.println(parser.toJson(block2));
+
+		
+		// Third Block--------------------------------------------------------
+		System.out.println("Finding a key...");
+
+		BlockHeader bh3 = new BlockHeader("1", difficulty, block2.computeHash());
+		Block block3 = new Block(fb3, bh3);
+		bh3.setMekelRoot(block3.merkleTree());
+
+		
+		starttime = System.currentTimeMillis();
+		blockchain.put(proofOfWork(block3),block3);
+		endtime = System.currentTimeMillis();
+		System.out.println("Time spent on mining in milli second: " + (endtime - starttime));
+
+		System.out.println(block3.computeHash());
+		System.out.println(parser.toJson(block3));
 
 
 	}
@@ -66,14 +109,15 @@ public class Blockchain_Main {
 		String target = new String(new char[difficulty]).replace('\0', '0'); // Create a string with difficulty * "0"
 
 		Gson parser = new Gson();
-
+		
+		
 		while (!x) {
 			block.blockheader.setNonce(nonce);
-			hash = SHA256.generateHash(parser.toJson(block));
+			hash = SHA256.generateHash(parser.toJson(block.blockheader));
 			x = hash.substring(0, difficulty).equals(target);
 			nonce++;
 		}
-
+			block.setHash(hash);//This could be done outside the function
 		return hash;
 	}
 }
