@@ -1,49 +1,48 @@
-# MCM PRACTICUM
+# Blockchain Structure with Fitbit Data
 
-This is a template for MCM practicums.  Please read these instructions carefully.
+This is a project of simple blockchain structure to test peformance of blockchain in local machine.  Please read these instructions carefully.
 
-This file is written in
-[markdown](https://guides.github.com/features/mastering-markdown/).  Markdown
-is a suitable format for documents stored in git repositories.
+This project is part of my Research Project at Dublin City University. Akihisa Nishikawa
+
 
 ## Instructions
 
-You *must* do the following:
+1 - Clone this repo as Maven Project into IDE
 
-1 - Fork this repo.
-
-2 - There is no need to rename your fork but if you wish to do so please use
-     the format:
-
-     2019-mcm-username
-
-replacing `username` with your School of Computing login name.
-
-For example, if Stephen Blott were to be doing an MCM practicum, he would rename
-his repo as:
-
-     2019-mcm-sblott
+2 - Maven 'mvn 3.0+' required
 
 
-You should also update the *Project description*.
+## Getting Started 
 
-3 - This directory has two important sub-directories.
+1 - Change Directory to where POM.xml resides
 
-- All of your source code should be placed in the `src` sub-directory.
+2 - Support IDE with maven
 
-- All of your documentation should be placed in the `docs` sub-directory.
+e.g.)
+ $ mvn eclipse:eclipse  
 
-4 - There is further important documentation in the `docs` directory.  Read that next.
+3 - Package all dependencies
 
-When you are have followed all of these instructions and are sure that you
-understand what is expected, you may replace the contents of this file with a
-brief description of your project (two or three paragraphs).
+ $ mvn package
 
+In this project maven is used to collect all dependencies. In order to create executable, see [Maven Documentation](https://maven.apache.org/plugins/maven-shade-plugin/examples/executable-jar.html) 
+
+- The order of creating valuee and/or incetances is important
+--Initially, genesis block should be created. Only Creation time is set initially and detail variable can be set as needed
+--Blockheader must be created before the block to be passed onto Block instance
+ 
+4 - There is further important documentation in the `docs` directory. References of the code are included in 'docs/README.md' also in comment.
+
+## JUnit Tests
+
+1 - 'test.Block_test.java' - Genesis Block Creation and Mining Function 
+
+2 - 'test.Dataset_test.java' - Dataset handling functions
+
+ 
 ## Additional Resources
 
-- Git [cheat sheet](https://gitlab.computing.dcu.ie/sblott/local-gitlab-documentation/blob/master/cheat-sheet.md)
-- Gitlab [CI environment](https://gitlab.computing.dcu.ie/sblott/docker-ci-environment) and it's [available software](https://gitlab.computing.dcu.ie/sblott/docker-ci-environment/blob/master/Dockerfile)
-- Example projects with CI configured:
-   * [Python](https://gitlab.computing.dcu.ie/sblott/test-project-python)
-   * [Java](https://gitlab.computing.dcu.ie/sblott/test-project-java)
-   * [MySql](https://gitlab.computing.dcu.ie/sblott/test-project-mysql)
+1 - 'additional_functions.SHA256.java' - SHA256 hash function and implementation of output handling
+
+2 - 'additional_functions.ObjectSizeCalculator.java' - Aimed for calculating block size however not used
+ 
