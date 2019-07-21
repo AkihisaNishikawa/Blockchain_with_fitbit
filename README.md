@@ -32,7 +32,7 @@ In this project maven is used to collect all dependencies. In order to create ex
 -- Initially, genesis block should be created. Only Creation time is set initially and detail variable can be set as needed  
 -- Blockheader must be created before the block to be passed onto Block instance
  
-4 - There is further important documentation in the `docs` directory. References of the code are included in 'docs/README.md' also in comment.
+4 - There is further important documentation in the `docs` directory. References of the code are included in `docs/README.md` also in comment.
 
 ## JUnit Tests
 
