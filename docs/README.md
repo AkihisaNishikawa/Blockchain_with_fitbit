@@ -1,12 +1,10 @@
-All of your documentation should be placed in subdirectories of this directory.
+#Code Reference
 
-- Use the `proposal` sub-directory for your project proposal.
-- Use the `documentation` sub-directory for your user manual and technical documentation.
+1 - [bitcoinj/bitcoinj](https://github.com/bitcoinj/bitcoinj)
+	- Full blockchain structure from Bitcoinj
 
-There are additional instructions in each of those sub-directories.  Please read them.
+2 - [Simple Blockchain Implementation](https://github.com/in-the-keyhole/khs-blockchain-java-example)
+	- 2018 Keyhole Software White Paper, Blockchain for the Enterprise
 
-**The general rule of thumb that you should adopt is that documents should be converted
-to PDF when finalised - and available for collection from your repo in time for the
-appropriate deadlines. While templates are provided in MS Word format, individual 
-students may select whichever editing software they prefer - the only constraint is that
-the final revision of these documents should be converted to PDF.**
+3 - [A simple implementation of blockchain](https://github.com/Will1229/Blockchain)
+	- Blockchai Implementation with web interface
