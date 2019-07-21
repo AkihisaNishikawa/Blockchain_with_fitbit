@@ -1,7 +1,5 @@
 package test;
 
-import java.util.List;
-
 import org.junit.Test;
 
 import com.google.gson.Gson;
