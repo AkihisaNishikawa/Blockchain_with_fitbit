@@ -28,7 +28,7 @@ e.g.)
 ```
 4 - Execute the project
 After Step 3 your IDE should be able to execute the code and main method is in Blockchain_Main
-Here is an example to execute from command line
+Here is an example to execute from command line 
 e.g.)
 
 ```
@@ -42,7 +42,7 @@ In this project maven is used to collect all dependencies and to create executab
 -- Initially, genesis block should be created. Only Creation time is set initially and detail variable can be set as needed  
 -- Blockheader must be created before the block to be passed onto Block instance
  
-4 - There is further important documentation in the `docs` directory. References of the code are included in `docs/README.md` also in comment.
+5 - There is further important documentation in the `docs` directory. References of the code are included in `docs/README.md` also in comment.
 
 ## JUnit Tests
 
