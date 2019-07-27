@@ -5,25 +5,16 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.java.practicum</groupId>
-	<artifactId>akihisa-practicum</artifactId>
+	<groupId>practicum</groupId>
+	<artifactId>akihisa-2019-MCM-practicum</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-
 	<name>2019-mcm-master</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
-		<maven.compiler.release>10</maven.compiler.release>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-
-	<repositories>
-		<repository>
-			<id>central</id>
-			<name>Maven repository</name>
-			<url>http://repo1.maven.org/maven2</url>
-		</repository>
-	</repositories>
 
 	<dependencies>
 		<dependency>
@@ -44,54 +35,86 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	</dependencies>
 
 	<build>
-		<defaultGoal>install</defaultGoal>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.8.1</version>
-					<configuration>
-						<source>1.8</source>
-						<target>1.8</target>
-					</configuration>
-				</plugin>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
 
-				<plugin>
-					<artifactId>maven-assembly-plugin</artifactId>
-					<version>3.1</version>
-					<executions>
-						<execution>
-							<id>make-assembly</id>
-							<phase>package</phase>
-							<goals>
-								<goal>single</goal>
-							</goals>
-						</execution>
-					</executions>
-					<configuration>
-						<descriptors>
-							<descriptor>assembly.xml</descriptor>
-						</descriptors>
-						<finalName>Akihisa-Practicum</finalName>
-						<appendAssemblyId>false</appendAssemblyId>
-						<archive>
-							<manifest>
-								<mainClass>blockchain_main.Blockchain_Main</mainClass>
-							</manifest>
-						</archive>
-					</configuration>
-				</plugin>
-				<plugin>
-					<artifactId>maven-assembly-plugin</artifactId>
-					<version>3.1.1</version>
-					<configuration>
-						<descriptorRefs>
-							<descriptorRef>jar-with-dependencies</descriptorRef>
-						</descriptorRefs>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<descriptors>
+						<descriptor>assembly.xml</descriptor>
+					</descriptors>
+					<finalName>2019-mcm-master</finalName>
+					<appendAssemblyId>false</appendAssemblyId>
+					<archive>
+						<manifest>
+							<mainClass>blockchain_main.Blockchain_Main</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+
+			           <plugin>
+                <groupId>com.akathist.maven.plugins.launch4j</groupId>
+                <artifactId>launch4j-maven-plugin</artifactId>
+                <version>1.7.25</version>
+                <executions>
+                    <execution>
+                        <id>l4j-gui</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>launch4j</goal>
+                        </goals>
+                        <configuration>
+                            <headerType>gui</headerType>
+                            <outfile>target/Project.exe</outfile>
+                            <jar>target/${project.artifactId}-${project.version}.jar</jar>
+                            <!-- if <dontWrapJar>true</dontWrapJar> change to this conf <jar>${project.artifactId}-${project.version}.jar</jar> -->
+                            <dontWrapJar>false</dontWrapJar>
+                            <errTitle>Error in launch4j plugin</errTitle>
+                            <classPath>
+                                <mainClass>blockchain_main.Blockchain_Main</mainClass>
+                            </classPath>
+                            <jre>
+                                <minVersion>1.5.0</minVersion>
+                                <maxVersion>1.6.0</maxVersion>
+                                <initialHeapSize>512</initialHeapSize>
+                                <maxHeapSize>1024</maxHeapSize>
+                            </jre>
+                            <versionInfo>
+                                <fileVersion>1.0.0.0</fileVersion>
+                                <txtFileVersion>1.0.0.0</txtFileVersion>
+                                <fileDescription>des</fileDescription>
+                                <copyright>Copyright (c) 2014 </copyright>
+                                <companyName>comp</companyName>
+                                <productVersion>3.0.0.0</productVersion>
+                                <txtProductVersion>${project.version}</txtProductVersion>
+                                <productName>Project</productName>
+                                <internalName>Project</internalName>
+                                <originalFilename>Project.exe</originalFilename>
+                            </versionInfo>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+		</plugins>
 	</build>
 </project>  

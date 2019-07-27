@@ -18,38 +18,51 @@ public class Block_test {
 		genesisBlock.computeHash();// make sure hash value is not changing
 
 	}
-	
+
 	@Test
 	public void checkPoW() {
+		Multithread mt = new Multithread(Block.genesisBlock);
 		System.out.println("Finding a key...");
 		long starttime = System.nanoTime();
-		System.out.println(proofOfWork(Block.genesisBlock));
+		mt.start();
+		try {
+			mt.join();
+		} catch (InterruptedException e) {
+			// 例外処理
+			e.printStackTrace();
+		}
 		long endtime = System.nanoTime();
-		System.out.println(endtime-starttime);
-	
+		System.out.println(endtime - starttime);
+
 	}
-	
-	private String proofOfWork(Block block) {
+
+}
+
+class Multithread extends Thread {
+	Block block;
+
+	Multithread(Block block) {
+		this.block = block;
+	}
+
+	@Override
+	public void run() {
 		boolean x = false;
-		String hash="";
+		String hash = "";
 		int nonce = 0;
 		final int difficulty = block.blockheader.getDifficulty();
 		String target = new String(new char[difficulty]).replace('\0', '0'); // Create a string with difficulty * "0"
 
-		
 		Gson parser = new Gson();
-		
-		while(!x) {
+
+		while (!x) {
 			block.blockheader.setNonce(nonce);
 			hash = SHA256.generateHash(parser.toJson(block));
-			x = hash.substring(0,difficulty).equals(target);
+			x = hash.substring(0, difficulty).equals(target);
+			System.out.println(nonce);
 			nonce++;
 		}
-		
-		
-		return hash;
-	}
-	
 
+	}
 
 }

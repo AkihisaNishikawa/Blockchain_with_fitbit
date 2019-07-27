@@ -16,7 +16,7 @@ public class Blockchain_Main {
 
 	private static Map<String, Block> blockchain = new HashMap<String, Block>();// This string is Hash of the Block
 	private static ArrayList<Fitbit_data> fitbit;
-	private static final int difficulty = 4;
+	private static final int difficulty = 7;
 
 	public static void main(String[] args) {
 		Block genesisBlock = Block.createGenesisBlock();
@@ -31,8 +31,8 @@ public class Blockchain_Main {
 		long endtime = System.currentTimeMillis();
 		System.out.println("Time spent on mining in milli second: " + (endtime - starttime));
 
-		Gson parser = new GsonBuilder().setPrettyPrinting().create();		
-		blockchain.put(ghash,genesisBlock);
+		Gson parser = new GsonBuilder().setPrettyPrinting().create();
+		blockchain.put(ghash, genesisBlock);
 		System.out.println(parser.toJson(blockchain));
 
 		try {
@@ -42,12 +42,11 @@ public class Blockchain_Main {
 			e.printStackTrace();
 			System.exit(-1);
 		}
-		
-		List<Fitbit_data> fb1,fb2,fb3;
+
+		List<Fitbit_data> fb1, fb2, fb3;
 		fb1 = fitbit.subList(1, 122);
 		fb2 = fitbit.subList(123, 245);
 		fb3 = fitbit.subList(246, 368);
-		
 
 		// First Block--------------------------------------------------------
 		System.out.println("Finding a key...");
@@ -55,16 +54,15 @@ public class Blockchain_Main {
 		BlockHeader bh1 = new BlockHeader("1", difficulty, genesisBlock.computeHash());
 		Block block1 = new Block(fb1, bh1);
 		bh1.setMekelRoot(block1.merkleTree());
-		
+
 		starttime = System.currentTimeMillis();
-		blockchain.put(proofOfWork(block1),block1);
+		blockchain.put(proofOfWork(block1), block1);
 		endtime = System.currentTimeMillis();
-		System.out.println("Time spent on mining in milli second: " + (endtime - starttime));
 
 		System.out.println(block1.computeHash());
 		System.out.println(parser.toJson(block1));
+		System.out.println("Time spent on mining in milli second: " + (endtime - starttime));
 
-		
 		// Second Block--------------------------------------------------------
 		System.out.println("Finding a key...");
 
@@ -72,16 +70,14 @@ public class Blockchain_Main {
 		Block block2 = new Block(fb2, bh2);
 		bh2.setMekelRoot(block2.merkleTree());
 
-		
 		starttime = System.currentTimeMillis();
-		blockchain.put(proofOfWork(block2),block2);
+		blockchain.put(proofOfWork(block2), block2);
 		endtime = System.currentTimeMillis();
-		System.out.println("Time spent on mining in milli second: " + (endtime - starttime));
 
 		System.out.println(block2.computeHash());
 		System.out.println(parser.toJson(block2));
+		System.out.println("Time spent on mining in milli second: " + (endtime - starttime));
 
-		
 		// Third Block--------------------------------------------------------
 		System.out.println("Finding a key...");
 
@@ -89,15 +85,13 @@ public class Blockchain_Main {
 		Block block3 = new Block(fb3, bh3);
 		bh3.setMekelRoot(block3.merkleTree());
 
-		
 		starttime = System.currentTimeMillis();
-		blockchain.put(proofOfWork(block3),block3);
+		blockchain.put(proofOfWork(block3), block3);
 		endtime = System.currentTimeMillis();
-		System.out.println("Time spent on mining in milli second: " + (endtime - starttime));
 
 		System.out.println(block3.computeHash());
 		System.out.println(parser.toJson(block3));
-
+		System.out.println("Time spent on mining in milli second: " + (endtime - starttime));
 
 	}
 
@@ -109,15 +103,14 @@ public class Blockchain_Main {
 		String target = new String(new char[difficulty]).replace('\0', '0'); // Create a string with difficulty * "0"
 
 		Gson parser = new Gson();
-		
-		
+
 		while (!x) {
 			block.blockheader.setNonce(nonce);
 			hash = SHA256.generateHash(parser.toJson(block.blockheader));
 			x = hash.substring(0, difficulty).equals(target);
 			nonce++;
 		}
-			block.setHash(hash);//This could be done outside the function
+		block.setHash(hash);// This could be done outside the function
 		return hash;
 	}
 }

@@ -26,7 +26,17 @@ e.g.)
 ```
  $ mvn package
 ```
-In this project maven is used to collect all dependencies. In order to create executable, see [Maven Documentation](https://maven.apache.org/plugins/maven-shade-plugin/examples/executable-jar.html) 
+4 - Execute the project
+After Step 3 your IDE should be able to execute the code and main method is in Blockchain_Main
+Here is an example to execute from command line
+e.g.)
+
+```
+ $ java -cp target/2019-mcm-master.jar blockchain_main.Blockchain_Main
+```
+There is the executable jar with the dependencies in target foulder. 
+
+In this project maven is used to collect all dependencies and to create executable files in target foulder. For more reference to create executable, see [Maven Documentation](https://maven.apache.org/plugins/maven-shade-plugin/examples/executable-jar.html) 
 
 - The order of creating valuee and/or incetances is important  
 -- Initially, genesis block should be created. Only Creation time is set initially and detail variable can be set as needed  
