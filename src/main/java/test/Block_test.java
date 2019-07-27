@@ -28,7 +28,6 @@ public class Block_test {
 		try {
 			mt.join();
 		} catch (InterruptedException e) {
-			// 例外処理
 			e.printStackTrace();
 		}
 		long endtime = System.nanoTime();
