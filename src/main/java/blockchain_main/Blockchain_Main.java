@@ -29,11 +29,11 @@ public class Blockchain_Main {
 		long starttime = System.currentTimeMillis();
 		final String ghash = proofOfWork(Block.genesisBlock);
 		long endtime = System.currentTimeMillis();
-		System.out.println("Time spent on mining in milli second: " + (endtime - starttime));
 
 		Gson parser = new GsonBuilder().setPrettyPrinting().create();
 		blockchain.put(ghash, genesisBlock);
 		System.out.println(parser.toJson(blockchain));
+		System.out.println("Time spent on mining in milli second: " + (endtime - starttime));
 
 		try {
 			fitbit = Fitbit_data.getInstancesAsList();
