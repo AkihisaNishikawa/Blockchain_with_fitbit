@@ -29,8 +29,7 @@ e.g.)
 4 - Execute the project
 After Step 3 your IDE should be able to execute the code and main method is in Blockchain_Main
 Here is an example to execute from command line 
-e.g.)
-
+e.g.)  
 ```
  $ java -cp target/2019-mcm-master.jar blockchain_main.Blockchain_Main
 ```
