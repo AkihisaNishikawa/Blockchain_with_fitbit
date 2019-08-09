@@ -11,7 +11,7 @@ This project is part of my Research Project to test the performance of blockchai
 
 2 - Maven `mvn 3.0+` and 'java 8.0+'required
 
-3- For the execution, there is no need of maven. Go to 'Getting Started' step 4
+3- For the execution, there is no need of maven. Go to `Getting Started` step 4
 
 
 ## Getting Started 
