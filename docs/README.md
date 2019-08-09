@@ -1,6 +1,6 @@
 #Code Reference
 
-1 - The final paper is in the `documentation` foulder. Diagrams that are used in paper are also in the `documentaiton` 
+1 - The final paper is in the `documentation` foulder. Diagrams that are used in paper are also in this directory.  
 
 2 - Proposal and literature review that is submitted on January are in `proposal` 
 
