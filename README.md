@@ -16,7 +16,7 @@ This project is part of my Research Project at Dublin City University. Akihisa N
 
 1 - Change Directory to where POM.xml resides
 
-2 - Support IDE with maven
+2 - Support IDE with maven If you are only running code from executable jar file, skip to step 4
 
 e.g.)
 ```
@@ -33,7 +33,7 @@ e.g.)
 ```
  $ java -cp target/2019-mcm-master.jar blockchain_main.Blockchain_Main
 ```
-There is the executable jar with the dependencies in target foulder. 
+There is the executable jar with the dependencies in target foulder. Execution has to be done from where the `One_Year_of_FitBitChargeHR_Data.csv` resides
 
 In this project maven is used to collect all dependencies and to create executable files in target foulder. For more reference to create executable, see [Maven Documentation](https://maven.apache.org/plugins/maven-shade-plugin/examples/executable-jar.html) 
 
@@ -41,7 +41,7 @@ In this project maven is used to collect all dependencies and to create executab
 -- Initially, genesis block should be created. Only Creation time is set initially and detail variable can be set as needed  
 -- Blockheader must be created before the block to be passed onto Block instance
  
-5 - There is further important documentation in the `docs` directory. References of the code are included in `docs/README.md` also in comment.
+5 - Final Paper is in `docs/documentation' 
 
 ## JUnit Tests
 
@@ -54,5 +54,16 @@ In this project maven is used to collect all dependencies and to create executab
 
 1 - `additional_functions.SHA256.java` - SHA256 hash function and implementation of output handling
 
-2 - `additional_functions.ObjectSizeCalculator.java` - Aimed for calculating block size however not used
+2 - `additional_functions.ObjectSizeCalculator.java` - Aimed for calculating block size however not used in main
+
+#Code Reference
+
+1 - [bitcoinj/bitcoinj](https://github.com/bitcoinj/bitcoinj)
+	- Full blockchain structure from Bitcoinj
+
+2 - [Simple Blockchain Implementation](https://github.com/in-the-keyhole/khs-blockchain-java-example)
+	- 2018 Keyhole Software White Paper, Blockchain for the Enterprise
+
+3 - [A simple implementation of blockchain](https://github.com/Will1229/Blockchain)
+	- Blockchai Implementation with web interface
  
