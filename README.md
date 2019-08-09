@@ -2,7 +2,7 @@
 
 This is a project of simple blockchain structure to test peformance of blockchain in local machine.  Please read these instructions carefully.
 
-This project is part of my Research Project at Dublin City University. Akihisa Nishikawa
+This project is part of my Research Project to test the performance of blockchain with proof of work.
 
 
 ## Instructions
