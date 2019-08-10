@@ -47,7 +47,7 @@ In this project maven is used to collect all dependencies and to create executab
 -- Initially, genesis block should be created. Only Creation time is set initially and detail variable can be set as needed  
 -- Blockheader must be created before the block to be passed onto Block instance
  
-5 - Final Paper is in `docs/documentation` 
+5 - Final Paper is in `docs/documentation/Final Paper` 
 
 ## JUnit Tests
 
