@@ -35,7 +35,9 @@ e.g.)
 ```
  $ java -cp target/2019-mcm-master.jar blockchain_main.Blockchain_Main
 ```
-There is the executable jar with the dependencies in target foulder and the 2019-mcm-master.jar's difficulty is set to 7. Other difficulties are stored as 019-mcm-master-0X.jar  
+There is the executable jar with the dependencies in target foulder and the 2019-mcm-master.jar's difficulty is set to 7.  
+Other difficulties are stored as 019-mcm-master-0X.jar  
+  
 Execution has to be done from where the `One_Year_of_FitBitChargeHR_Data.csv` resides  
 Depends on the hardware, execution takes quite long time. Please be aware of hardware enviroment.  
 
